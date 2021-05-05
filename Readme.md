@@ -11,11 +11,13 @@ Start Components
 sudo docker-compose up --build
 ```
 
-Boundary: `localhost:9200`
+Boundary: `http://localhost:9200`
 admin:admin123456
 
-Keycloak: `localhost:8080`
+Keycloak: `http://localhost:8080`
 admin:admin
+
+Keycloak Realm Boundary: `http://localhost:8080/auth/realms/Boundary/account/#/` 
 Demo1:demo1
 
 
@@ -46,8 +48,6 @@ export AUTH_METHOD_KEYCLOAK=`boundary auth-methods list -format=json | jq -r '.i
 
 export BOUNDARY_TOKEN=`boundary authenticate oidc -auth-method-id ${AUTH_METHOD_KEYCLOAK} -format=json | jq -r '.item.token'`
 ```
-
-Add created account to admin user
 
 Connect to SSH Server
 ```
