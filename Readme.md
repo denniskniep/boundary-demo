@@ -8,7 +8,7 @@ Add /etc/hosts entry
 
 Start Components
 ```
-sudo docker-compose up --build
+sudo docker-compose -f docker-compose.fromImage.yaml -f docker-compose.env.yaml up --build
 ```
 
 Boundary: `http://localhost:9200`
@@ -79,3 +79,25 @@ Execute following in running Keycloak container
 ```
 
 Copy `/tmp/realm.json`
+```
+sudo docker cp <containerId>:/tmp/realm.json /tmp/realm.json
+```
+
+
+## Run Boundary compiled sources 
+Add /etc/hosts entry
+```
+127.0.0.1 keycloak
+```
+
+Clone Boundary (https://github.com/hashicorp/boundary) next to Boundary_demo
+
+In Boundary Directory excecute:
+```
+make dev
+```
+
+Start Components
+```
+sudo docker-compose -f docker-compose.fromLocal.yaml -f docker-compose.env.yaml up --build
+```
